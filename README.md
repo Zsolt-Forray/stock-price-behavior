@@ -1,5 +1,9 @@
 # stock-price-behavior
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/317cc311bf4646ffa314929634c3e0af)](https://www.codacy.com/app/forray.zsolt/stock-price-behavior?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Zsolt-Forray/stock-price-behavior&amp;utm_campaign=Badge_Grade)
+[![Maintainability](https://api.codeclimate.com/v1/badges/74220500f2e6e569e2b4/maintainability)](https://codeclimate.com/github/Zsolt-Forray/stock-price-behavior/maintainability)
+[![Python 3.6](https://img.shields.io/badge/python-3.6-blue.svg)](https://www.python.org/downloads/release/python-360/)
+
 ## Description
 Understanding stock price daily and intraday fluctuations is necessary for developing successful trading strategies. This 'Price Behavior Analyzing' tool provides statistics of the distribution of predefined stock price ranges (e.g. close price and open price difference) over a given period of time.
 
