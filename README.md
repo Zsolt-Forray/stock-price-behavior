@@ -5,10 +5,10 @@ Understanding stock price daily and intraday fluctuations is necessary for devel
 
 #### Predefined Stock Price Ranges
 
-- [Open Price - Prior Close Price](#price-range-/-open-price-&-prior-close-price-difference)
-- [Close Price - Open Price](#price-range-/-close-price-&-open-price-difference)
-- [Close Price - Prior Close Price](#price-range-/-close-price-&-prior-close-price-difference)
-- [Intraday Price - Open Price](#price-range-/-intraday-price-&-open-price-difference)
+- [Open Price - Prior Close Price](#price-range-/-open-price-and-prior-close-price-difference)
+- [Close Price - Open Price](#price-range-/-close-price-and-open-price-difference)
+- [Close Price - Prior Close Price](#price-range-/-close-price-and-prior-close-price-difference)
+- [Intraday Price - Open Price](#price-range-/-intraday-price-and-open-price-difference)
 
 ## Usage
 1.  Create a new directory somewhere.
@@ -49,7 +49,7 @@ Example:
 
 ![Screenshot](/png/dictionary_out.png)
 
-#### Price Range / Open Price & Prior Close Price difference
+#### Price Range / Open Price and Prior Close Price difference
 The difference of the daily open price and the previous day's close price.
 
 ```
@@ -65,7 +65,7 @@ pp.pprint(res)
 
 ![Screenshot](/png/open_priorclose_chart_out.png)
 
-#### Price Range / Close Price & Open Price difference
+#### Price Range / Close Price and Open Price difference
 The difference of the daily close and open price.
 
 ```
@@ -81,7 +81,7 @@ pp.pprint(res)
 
 ![Screenshot](/png/close_open_chart_out.png)
 
-#### Price Range / Close Price & Prior Close Price difference
+#### Price Range / Close Price and Prior Close Price difference
 The difference of the daily close price and the previous day's close price.
 
 ```
@@ -97,7 +97,7 @@ pp.pprint(res)
 
 ![Screenshot](/png/close_priorclose_chart_out.png)
 
-#### Price Range / Intraday Price & Open Price difference
+#### Price Range / Intraday Price and Open Price difference
 The difference of a selected intraday price (e.g. current trading price at 16:30 - Hungarian time) and the daily open price.
 
 ```
