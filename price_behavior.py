@@ -182,7 +182,6 @@ def display_result(data, doc, ticker, boundary, chart):
     return res_dict
 
 def run(ticker, price_range, boundary, intra_time, chart=False):
-    val_tickers = ("AMAT", "C", "JD", "MSFT", "MU", "TWTR")
     PRIOR_DAY = 1
     try:
         # Intitial value(s)
