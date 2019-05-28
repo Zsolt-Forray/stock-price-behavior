@@ -217,7 +217,3 @@ def run(ticker, price_range, boundary, intra_time, chart=False):
 
     except Exception:
         print("[Error] Please check the input parameter(s)")
-
-
-if __name__ == "__main__":
-    run("TWTR", "intraprice_open", 0.5, "1900", True)
