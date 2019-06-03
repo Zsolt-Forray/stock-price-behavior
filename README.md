@@ -120,3 +120,8 @@ pp.pprint(res)
 
 ## LICENSE
 MIT
+
+## Contributions
+Contributions to Stock Price Behavior Analyzing Tool are always welcome.  
+If you have questions, suggestions or want to improve this repository, please create an [issue](https://github.com/Zsolt-Forray/stock-price-behavior/issues) or [pull requests](https://github.com/Zsolt-Forray/stock-price-behavior/pulls).  
+This repo is maintained by Zsolt Forray (forray.zsolt@gmail.com).
