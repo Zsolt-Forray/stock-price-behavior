@@ -45,7 +45,7 @@ Remark: Input parameters must be separated by comma(s).
 __author__  = 'Zsolt Forray'
 __license__ = 'MIT'
 __version__ = '0.0.1'
-__date__    = '08/12/2019'
+__date__    = '09/12/2019'
 __status__  = 'Development'
 
 
@@ -142,7 +142,7 @@ class PriceData(QuotesData):
 
         # Intraday Price
         # Intraday price is the close price of every 5 minutes trading range
-        if self.intra_time:
+        if isinstance(self.intra_time, str):
             mod_intra_time = self.intra_time
             mod_intra_time = ":".join([self.intra_time[:2], self.intra_time[2:4], "00"])
             intra_price_series = \
@@ -165,7 +165,7 @@ class PriceAnalysis(PriceData):
 
     def open_priorclose_analysis(self):
         "Open-Prior Close Price Difference"
-        self.check_parameters()
+        self.check_daily_parameters()
         self.create_price_arrays()
         doc = self.open_priorclose_analysis.__doc__
         open_priorclose_diff = self.open_price - self.prior_close_price
@@ -177,7 +177,7 @@ class PriceAnalysis(PriceData):
 
     def close_open_analysis(self):
         "Close-Open Price Difference"
-        self.check_parameters()
+        self.check_daily_parameters()
         self.create_price_arrays()
         doc = self.close_open_analysis.__doc__
         close_open_diff = self.close_price - self.open_price
@@ -189,7 +189,7 @@ class PriceAnalysis(PriceData):
 
     def close_priorclose_analysis(self):
         "Close-Prior Close Price Difference"
-        self.check_parameters()
+        self.check_daily_parameters()
         self.create_price_arrays()
         doc = self.close_priorclose_analysis.__doc__
         close_priorclose_diff = self.close_price - self.prior_close_price
@@ -201,7 +201,8 @@ class PriceAnalysis(PriceData):
 
     def intraprice_open_analysis(self):
         if self.intra_time:
-            self.check_parameters()
+            self.check_daily_parameters()
+            self.check_intra_parameters()
             self.create_price_arrays()
             doc = "Intraday Price @{} - Open Price Difference".format(self.intra_time)
             intraprice_open_diff = self.intra_price - self.intra_open
@@ -213,32 +214,37 @@ class PriceAnalysis(PriceData):
         else:
             print("Specify the 'intra_time'")
 
-    def check_parameters(self):
+    def check_daily_parameters(self):
         try:
             valid_tickers = ("AMAT", "C", "JD", "MSFT", "MU", "TWTR")
             ticker = str.upper(self.ticker)
             if ticker not in valid_tickers:
                 raise InvalidTickersError()
-
             if self.boundary <= 0:
                 raise InvalidBoundaryError()
-
-            if len(self.intra_time) != 4:
-                raise InvalidIntratimeError()
-
-            if not 1530 <= int(self.intra_time) <= 2155:
-                raise InvalidIntratimeError()
-
-            if self.intra_time[-1] not in ["0", "5"]:
-                raise InvalidIntratimeError()
-
         except InvalidBoundaryError:
             print("Boundary must be positiv value")
             sys.exit()
         except InvalidTickersError:
             print("Check the available ticker symbols: AMAT, C, JD, MSFT, MU, TWTR")
             sys.exit()
+
+    def check_intra_parameters(self):
+        try:
+            if isinstance(self.intra_time, bool):
+                if self.intra_time:
+                    raise InvalidIntratimeError()
+            elif isinstance(self.intra_time, str):
+                if len(self.intra_time) != 4:
+                    raise InvalidIntratimeError()
+                elif not 1530 <= int(self.intra_time) <= 2155:
+                    raise InvalidIntratimeError()
+                elif self.intra_time[-1] not in ["0", "5"]:
+                    raise InvalidIntratimeError()
         except InvalidIntratimeError:
+            print("Check the value and format of 'intra_time'")
+            sys.exit()
+        except ValueError:
             print("Check the value and format of 'intra_time'")
             sys.exit()
 
