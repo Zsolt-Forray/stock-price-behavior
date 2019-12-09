@@ -272,7 +272,7 @@ class PriceAnalysis(PriceData):
         b = np.arange(min_val, max_val + step, step)
         # Drawing Chart
         if chart:
-            _ = plt.hist(data, bins=b, rwidth=0.9)[0]
+            plt.hist(data, bins=b, rwidth=0.9)[0]
             plt.title("Histogram of Stock {}\nTicker Symbol: {}".format(doc, ticker))
             plt.ylabel("Frequency")
             plt.xlabel("{}".format(doc))
