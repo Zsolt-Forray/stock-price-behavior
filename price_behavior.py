@@ -99,7 +99,7 @@ class QuotesData:
 
         # Time adjustement
         self.adj_time = [re.sub(k[:2], str(int(k[:2])+1), k, 1) \
-        if self.raw_intra_quotes_df.TZ_Bool[i]==True \
+        if self.raw_intra_quotes_df.TZ_Bool[i] \
         else k for i, k in enumerate(self.raw_intra_quotes_df.AdjTime)]
         # '1' shall be added in the sub, otherwise 15:15:00->16:16:00 & 20:20:00->21:21:00
 
