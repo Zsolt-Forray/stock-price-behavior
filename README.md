@@ -1,4 +1,4 @@
-# stock-price-behavior
+# Stock Price Behavior
 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/317cc311bf4646ffa314929634c3e0af)](https://www.codacy.com/app/forray.zsolt/stock-price-behavior?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Zsolt-Forray/stock-price-behavior&amp;utm_campaign=Badge_Grade)
 [![Python 3.6](https://img.shields.io/badge/python-3.6-blue.svg)](https://www.python.org/downloads/release/python-360/)
