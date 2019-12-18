@@ -2,6 +2,7 @@
 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/317cc311bf4646ffa314929634c3e0af)](https://www.codacy.com/app/forray.zsolt/stock-price-behavior?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Zsolt-Forray/stock-price-behavior&amp;utm_campaign=Badge_Grade)
 [![Codacy Badge](https://api.codacy.com/project/badge/Coverage/317cc311bf4646ffa314929634c3e0af)](https://www.codacy.com/manual/forray.zsolt/stock-price-behavior?utm_source=github.com&utm_medium=referral&utm_content=Zsolt-Forray/stock-price-behavior&utm_campaign=Badge_Coverage)
+[![Build Status](https://travis-ci.com/Zsolt-Forray/stock-price-behavior.svg?branch=master)](https://travis-ci.com/Zsolt-Forray/stock-price-behavior)
 [![Python 3.6](https://img.shields.io/badge/python-3.6-blue.svg)](https://www.python.org/downloads/release/python-360/)
 
 ## Description
