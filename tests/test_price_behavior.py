@@ -14,7 +14,6 @@ __status__  = 'Development'
 
 
 import unittest
-import context
 from context import price_behavior
 
 
