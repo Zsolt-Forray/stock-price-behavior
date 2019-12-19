@@ -13,8 +13,8 @@ __date__    = '18/12/2019'
 __status__  = 'Development'
 
 
-import unittest
 from context import price_behavior
+import unittest
 
 
 class TestQuotesData(unittest.TestCase):
