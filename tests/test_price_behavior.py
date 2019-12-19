@@ -9,18 +9,32 @@ Test for the stock price behavior analyzing tool
 __author__  = 'Zsolt Forray'
 __license__ = 'MIT'
 __version__ = '0.0.1'
-__date__    = '18/12/2019'
+__date__    = '19/12/2019'
 __status__  = 'Development'
 
 
-from context import price_behavior
+import sys
+import os
 import unittest
+
+TEST_DIR = os.path.dirname(__file__)
+PROJECT_DIR_NAME = "stock_price_behavior"
+PROJECT_DIR = os.path.abspath(os.path.join(TEST_DIR, "..", PROJECT_DIR_NAME))
+
+sys.path.insert(0, PROJECT_DIR)
+
+from price_behavior import QuotesData
+from price_behavior import PriceData
+from price_behavior import PriceAnalysis
+from user_defined_exceptions import InvalidBoundaryError
+from user_defined_exceptions import InvalidTickersError
+from user_defined_exceptions import InvalidIntratimeError
 
 
 class TestQuotesData(unittest.TestCase):
     def setUp(self):
         ticker = "AMAT"
-        self.quotes = price_behavior.QuotesData(ticker)
+        self.quotes = QuotesData(ticker)
 
     def test_read_quotes(self):
         self.quotes.read_quotes()
@@ -42,7 +56,7 @@ class TestPriceData(unittest.TestCase):
     def setUp(self):
         ticker = "MU"
         intra_time = "1800"
-        self.data = price_behavior.PriceData(ticker, intra_time)
+        self.data = PriceData(ticker, intra_time)
 
     def test_create_price_arrays(self):
         self.data.create_price_arrays()
@@ -65,8 +79,7 @@ class TestPriceAnalysis(unittest.TestCase):
         boundary = 0.5
         intra_time = False
         show_chart = False
-        self.paobj = price_behavior.PriceAnalysis(ticker, boundary, \
-                                                  intra_time, show_chart)
+        self.paobj = PriceAnalysis(ticker, boundary, intra_time, show_chart)
 
     def test_check_daily_parameters(self):
         # If no exception
@@ -100,8 +113,7 @@ class TestIntradayPriceAnalysis(unittest.TestCase):
         boundary = 0.5
         intra_time = "1800"
         show_chart = False
-        self.paobj = price_behavior.PriceAnalysis(ticker, boundary, \
-                                                  intra_time, show_chart)
+        self.paobj = PriceAnalysis(ticker, boundary, intra_time, show_chart)
 
     def test_intraprice_open_analysis(self):
         result = self.paobj.intraprice_open_analysis()
@@ -111,43 +123,43 @@ class TestIntradayPriceAnalysis(unittest.TestCase):
 class TestPriceAnalysisInvalidParams(unittest.TestCase):
     def test_check_daily_parameters_invalid_ticker(self):
         # Verify the exit if invalid ticker is given
-        self.paobj = price_behavior.PriceAnalysis("OXY", 0.5, "1800", False)
+        self.paobj = PriceAnalysis("OXY", 0.5, "1800", False)
         self.assertRaises(SystemExit, self.paobj.check_daily_parameters)
 
     def test_check_daily_parameters_invalid_boundary(self):
         # Verify the exit if invalid boundary is given
-        self.paobj = price_behavior.PriceAnalysis("MU", -0.5, "1800", False)
+        self.paobj = PriceAnalysis("MU", -0.5, "1800", False)
         self.assertRaises(SystemExit, self.paobj.check_daily_parameters)
 
 
 class TestIntraPriceAnalysisInvalidParams(unittest.TestCase):
     def test_check_intra_parameters_invalid_time_1(self):
         # Verify the exit if invalid time is given
-        self.paobj = price_behavior.PriceAnalysis("MU", 0.5, True, False)
+        self.paobj = PriceAnalysis("MU", 0.5, True, False)
         self.assertRaises(SystemExit, self.paobj.check_intra_parameters)
 
     def test_check_intra_parameters_invalid_time_2(self):
-        self.paobj = price_behavior.PriceAnalysis("MU", 0.5, False, False)
+        self.paobj = PriceAnalysis("MU", 0.5, False, False)
         self.assertIsNone(self.paobj.intraprice_open_analysis())
 
     def test_check_intra_parameters_invalid_time_3(self):
-        self.paobj = price_behavior.PriceAnalysis("MU", 0.5, "18000", False)
+        self.paobj = PriceAnalysis("MU", 0.5, "18000", False)
         self.assertRaises(SystemExit, self.paobj.check_intra_parameters)
 
     def test_check_intra_parameters_invalid_time_4(self):
-        self.paobj = price_behavior.PriceAnalysis("MU", 0.5, "2200", False)
+        self.paobj = PriceAnalysis("MU", 0.5, "2200", False)
         self.assertRaises(SystemExit, self.paobj.check_intra_parameters)
 
     def test_check_intra_parameters_invalid_time_5(self):
-        self.paobj = price_behavior.PriceAnalysis("MU", 0.5, "1803", False)
+        self.paobj = PriceAnalysis("MU", 0.5, "1803", False)
         self.assertRaises(SystemExit, self.paobj.check_intra_parameters)
 
     def test_check_intra_parameters_invalid_time_6(self):
-        self.paobj = price_behavior.PriceAnalysis("MU", 0.5, "xxxx", False)
+        self.paobj = PriceAnalysis("MU", 0.5, "xxxx", False)
         self.assertRaises(SystemExit, self.paobj.check_intra_parameters)
 
     # def test_check_intra_parameters_invalid_time_7(self):
-    #     self.paobj = price_behavior.PriceAnalysis("MU", 0.5, 1800, False)
+    #     self.paobj = PriceAnalysis("MU", 0.5, 1800, False)
     #     self.assertRaises(SystemExit, self.paobj.check_intra_parameters)
 
 
