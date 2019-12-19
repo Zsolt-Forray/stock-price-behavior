@@ -26,9 +26,6 @@ sys.path.insert(0, PROJECT_DIR)
 from price_behavior import QuotesData
 from price_behavior import PriceData
 from price_behavior import PriceAnalysis
-from user_defined_exceptions import InvalidBoundaryError
-from user_defined_exceptions import InvalidTickersError
-from user_defined_exceptions import InvalidIntratimeError
 
 
 class TestQuotesData(unittest.TestCase):
@@ -86,7 +83,7 @@ class TestPriceAnalysis(unittest.TestCase):
         raised = False
         try:
             self.paobj.check_daily_parameters()
-        except:
+        except Exception:
             raised = True
         self.assertFalse(raised)
 
