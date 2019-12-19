@@ -45,7 +45,7 @@ Remark: Input parameters must be separated by comma(s).
 __author__  = 'Zsolt Forray'
 __license__ = 'MIT'
 __version__ = '0.0.1'
-__date__    = '09/12/2019'
+__date__    = '19/12/2019'
 __status__  = 'Development'
 
 
@@ -55,6 +55,7 @@ import os
 import re
 import sys
 import matplotlib.pyplot as plt
+
 from user_defined_exceptions import InvalidBoundaryError
 from user_defined_exceptions import InvalidTickersError
 from user_defined_exceptions import InvalidIntratimeError
@@ -67,7 +68,7 @@ class QuotesData:
     @staticmethod
     def define_path():
         base_path = os.path.dirname(os.path.abspath(__file__))
-        return os.path.join(base_path, "IntraQuotes/{}.txt")
+        return os.path.join(base_path, "..", "IntraQuotes/{}.txt")
 
     def read_quotes(self):
         """Read the 5-min intraday quotes from text file as pandas dataframe"""
